@@ -1,1 +1,47 @@
-.env
+# Configuración personal y del sistema
+*.log
+*.tmp
+*.bak
+*.rar
+*.iso
+*.zip
+*.7z
+*.tar.gz
+*.ini
+*.dat
+*.blf
+*.regtrans-ms
+
+# Carpetas del sistema
+AppData/
+OneDrive/
+.vscode/
+Desktop/
+Downloads/
+Favorites/
+Music/
+Pictures/
+Videos/
+Saved Games/
+Contacts/
+Searches/
+Links/
+IntelGraphicsProfiles/
+
+# Archivos específicos
+NTUSER.*
+desktop.ini
+.gitconfig
+.lesshst
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+
+# Archivos del proyecto que no quieres subir
+*.txt
+*.docx
