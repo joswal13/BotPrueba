@@ -46,7 +46,7 @@ def home():
 
 if __name__ == "__main__":
     # Obtiene el hostname de Render o usa uno fijo
-    hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "minetbot.onrender.com")
+    hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
     WEBHOOK_URL = f"https://{hostname}/{TOKEN}"
 
     # Configura el webhook de Telegram
