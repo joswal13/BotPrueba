@@ -100,12 +100,12 @@ def set_webhook():
 # ============================
 # Solo para pruebas locales (NO usado por Render)
 # ============================
-if __name__ == "__main__":
+if __name__ != "__main__":
     hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
-    WEBHOOK_URL = f"https://{hostname}/{TOKEN}"
+    webhook_url = f"https://{hostname}/{TOKEN}"
     bot.remove_webhook()
-    bot.set_webhook(url=WEBHOOK_URL)
-    print(f"✅ Webhook configurado en: {WEBHOOK_URL}")
+    bot.set_webhook(url=webhook_url)
+    print(f"✅ Webhook configurado automáticamente en producción: {webhook_url}")
     port = int(os.environ.get("PORT", 5000))
     print(f"🚀 Iniciando servidor Flask en puerto {port}")
     app.run(host="0.0.0.0", port=port)
