@@ -11,8 +11,6 @@ if not TOKEN:
     exit(1)
 
 bot = telebot.TeleBot(TOKEN)
-print(f"📋 Handlers registrados: {bot.message_handlers}")
-
 app = Flask(__name__)
 
 # ============================
@@ -68,6 +66,9 @@ Usuario: admin
 Contraseña: admin o la que tengas configurada.
 """)
 
+# ✅ Imprimir handlers después de registrarlos
+print(f"📋 Handlers registrados: {bot.message_handlers}")
+
 # ============================
 # Webhook para recibir mensajes
 # ============================
@@ -75,24 +76,18 @@ Contraseña: admin o la que tengas configurada.
 def webhook():
     try:
         json_str = request.get_data().decode("utf-8")
-        print(f"🚨🚨🚨 Payload recibido:\n{json_str}")   # <-- vuelve a imprimir
+        print(f"🚨🚨🚨 Payload recibido:\n{json_str}")
         update = telebot.types.Update.de_json(json_str)
-        bot.process_new_updates([update])  # Usa handlers definidos arriba
+        bot.process_new_updates([update])
         return "OK", 200
     except Exception as e:
         print(f"❌ Error procesando update: {e}")
         return "Error", 500
 
-# ============================
-# Ruta raíz
-# ============================
 @app.route("/", methods=["GET"])
 def home():
     return "Bot online ✅"
 
-# ============================
-# Ruta manual para configurar el webhook
-# ============================
 @app.route("/set_webhook", methods=["GET"])
 def set_webhook():
     hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
@@ -103,7 +98,7 @@ def set_webhook():
     return f"Webhook set: {success}, URL: {webhook_url}"
 
 # ============================
-# Arranque local (no usado en Render)
+# Solo para pruebas locales (NO usado por Render)
 # ============================
 if __name__ == "__main__":
     hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
