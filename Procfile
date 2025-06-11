@@ -1,1 +1,1 @@
-web: gunicorn BotPrueba:app
+web: gunicorn botprueba:app
