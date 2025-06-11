@@ -19,6 +19,7 @@ app = Flask(__name__)
 
 @bot.message_handler(commands=["start", "help"])
 def handle_start(message):
+    print(f"✅ Handler /start invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Hola Soy 🤖MINETBOT, Tu asistente virtual 24/7. 
 
@@ -34,6 +35,7 @@ MINET es tu proveedor de servicios de internet con tecnología en Fibra Óptica.
 
 @bot.message_handler(commands=["1"])
 def handle_support(message):
+    print(f"✅ Handler /1 invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Soporte técnico / Problemas con el WiFi
 
@@ -46,6 +48,7 @@ Soporte técnico / Problemas con el WiFi
 
 @bot.message_handler(commands=["2"])
 def handle_plans(message):
+    print(f"✅ Handler /2 invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Planes de Servicio de Internet:
 
@@ -56,6 +59,7 @@ Planes de Servicio de Internet:
 
 @bot.message_handler(commands=["3"])
 def handle_wifi_change(message):
+    print(f"✅ Handler /3 invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Para cambiar la contraseña del WiFi, ingresa al panel de administración de tu router desde tu navegador con la dirección 192.168.1.1 o 192.168.0.1.  
 Usuario: admin  
