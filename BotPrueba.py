@@ -2,154 +2,108 @@ import os
 from flask import Flask, request
 import telebot
 
-TOKEN = os.getenv("TELEGRAM_TOKEN")  # Asegúrate que esta variable está en Render
-print(f"Token leído: {TOKEN!r}")  # Imprime el token entre comillas para detectar espacios o None
+# Leer token desde variables de entorno
+TOKEN = os.getenv("TELEGRAM_TOKEN")
+print(f"Token leído: {TOKEN!r}")
 
-if TOKEN is None:
+if not TOKEN:
     print("❌ ERROR: La variable de entorno TELEGRAM_TOKEN no está definida.")
     exit(1)
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
+# ============================
+# HANDLERS de comandos Telegram
+# ============================
+
 @bot.message_handler(commands=["start", "help"])
-def send_start(message):
-    print(f"✅ Recibido /start de {message.from_user.id}")
-    bot.reply_to(message, 
-                 """
-    hola Soy 🤖MINETBOT, Tu asistente virtual 24/7. 
-    
-MINET es tu Proveeedor de servicios de internet que te brinda tecnología en Fibra Óptica.
-  
-Nos enfocados en brindarte el mejor servicio. ¿En que podemos ayudarte ?
-   
-            \n /start - 💬 Comenzar un nuevo chat
-            \n /1 - 👨‍🔧​ Soporte técnico / Problemas con el WiFi
-            \n /2 - ​💯 Planes de Servicio de Internet
-            \n /3 - 📲 Cambiar contraseña del WiFi ​
-            
-    """,
-                 )
-    
+def handle_start(message):
+    bot.reply_to(message, """
+Hola Soy 🤖MINETBOT, Tu asistente virtual 24/7. 
+
+MINET es tu proveedor de servicios de internet con tecnología en Fibra Óptica.
+
+¿En qué podemos ayudarte?
+
+    /start - 💬 Comenzar un nuevo chat
+    /1 - 👨‍🔧 Soporte técnico / Problemas con el WiFi
+    /2 - 💯 Planes de Servicio de Internet
+    /3 - 📲 Cambiar contraseña del WiFi
+""")
+
 @bot.message_handler(commands=["1"])
-
 def handle_support(message):
-    
-    bot.reply_to(
-        message,
-         """
-        Soporte técnico / Problemas con el WiFi
+    bot.reply_to(message, """
+Soporte técnico / Problemas con el WiFi
 
-        📱 1. Verifica si hay señal en otros dispositivos
-            Intenta conectarte desde otro celular, computadora o tablet.Si ningún dispositivo se conecta, probablemente el problema está en tu red, no en el dispositivo.
-
-        ⚠️ 2. Revisa las luces del módem/router
-            Luz "LOS" (en rojo o parpadeando): significa pérdida de señal de fibra. Es señal clara de que no hay internet. Luz "Internet" apagada o roja: no hay conexión a internet. Luz "Power" apagada: el módem está apagado o sin energía.
-
-        🔌 3. Reinicia el módem/router
-            Apaga el equipo, espera 10-15 segundos y vuelve a encenderlo.Espera 2-3 minutos para que se reinicie completamente.
-
-        🧪 4. Prueba con un cable Ethernet (si tienes uno)
-            Conecta directamente tu PC al módem por cable. Si tampoco hay conexión, el problema no es del WiFi, sino del servicio en sí.
-
-
-        📞 6. Contacta a tu proveedor
-            Si después de todo sigue sin funcionar: Llama al soporte técnico (3213819255). Ten a mano nombre y numero de cedula del titular y revisa los indicadores del módem antes de llamar (ellos lo pedirán).
-
-        """,
-   
-    )
+📱 Verifica si hay señal en otros dispositivos  
+⚠️ Revisa las luces del módem/router  
+🔌 Reinicia el módem/router  
+🧪 Prueba con un cable Ethernet  
+📞 Contacta a soporte técnico: 3213819255  
+""")
 
 @bot.message_handler(commands=["2"])
-
 def handle_plans(message):
-    
-    bot.reply_to(
-        message,
-         """
-        Planes de Servicio de Internet
+    bot.reply_to(message, """
+Planes de Servicio de Internet:
 
-        1. ⚡ Plan Básico - 100MB x $75000
-        2. 🔥 Plan         - 150MB x $85000
-        3. 🤩​ Plan        - 200MB x $95000
-
-        """,
-   
-    )
+1. ⚡ Básico - 100MB x $75.000  
+2. 🔥 Medio - 150MB x $85.000  
+3. 🤩 Avanzado - 200MB x $95.000
+""")
 
 @bot.message_handler(commands=["3"])
+def handle_wifi_change(message):
+    bot.reply_to(message, """
+Para cambiar la contraseña del WiFi, ingresa al panel de administración de tu router desde tu navegador con la dirección 192.168.1.1 o 192.168.0.1.  
+Usuario: admin  
+Contraseña: admin o la que tengas configurada.
+""")
 
-def handle_wifi(message):
-    
-    bot.reply_to(
-        message,
-         """
-        Cambiar contraseña del WiFi:   
-
-        """,
-   
-    )
-
-def hola(message):
-    if message.text.lower() in ["hola", "hello", "hi", ]:
-        bot.send_message(
-            message.chat.id,
-            f""" Hola {message.from_user.first_name}, ¿en qué te puedo ayudar?, elige la opcion del siguiente menu que desees:
-   
-            \n /start - Comenzar un nuevo chat
-            \n /1 - Soporte técnico / Problemas con el WiFi
-            \n /2 - Planes de Servicio de Internet
-            \n /3 - Cambiar contraseña del WiFi
-            
-            """
-            
-        )
-    else:
-        bot.send_message(
-            message.chat.id,
-            "Comando no encontrado. Por favor, usa /start para revisar los comandos disponibles",
-        )  
-
+# ============================
+# Webhook para recibir mensajes
+# ============================
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     try:
         json_str = request.get_data().decode("utf-8")
-        print(f"🚨🚨🚨 Payload recibido:\n{json_str}")
         update = telebot.types.Update.de_json(json_str)
-        bot.process_new_updates([update])
-
-
-        # if update.message:
-        #     chat_id = update.message.chat.id
-        #     text = update.message.text
-        #     print(f"➡️ Mensaje recibido: {text} de {chat_id}")
-
-        #     if text and text.startswith("/start"):
-        #         bot.send_message(chat_id, "Hola, soy tu bot!")
-        #     elif text and text.startswith("/help"):
-        #         bot.send_message(chat_id, "Puedo ayudarte con /start y /help.")
-
+        bot.process_new_updates([update])  # Usa handlers definidos arriba
         return "OK", 200
     except Exception as e:
         print(f"❌ Error procesando update: {e}")
         return "Error", 500
 
-
+# ============================
+# Ruta raíz
+# ============================
 @app.route("/", methods=["GET"])
 def home():
-    return "Bot online"
+    return "Bot online ✅"
 
+# ============================
+# Ruta manual para configurar el webhook
+# ============================
+@app.route("/set_webhook", methods=["GET"])
+def set_webhook():
+    hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
+    webhook_url = f"https://{hostname}/{TOKEN}"
+    bot.remove_webhook()
+    success = bot.set_webhook(url=webhook_url)
+    print(f"🔧 Webhook configurado manualmente: {webhook_url}")
+    return f"Webhook set: {success}, URL: {webhook_url}"
+
+# ============================
+# Arranque local (no usado en Render)
+# ============================
 if __name__ == "__main__":
-    # Obtiene el hostname de Render o usa uno fijo
     hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "botprueba-m9ta.onrender.com")
     WEBHOOK_URL = f"https://{hostname}/{TOKEN}"
-
-    # Configura el webhook de Telegram
     bot.remove_webhook()
     bot.set_webhook(url=WEBHOOK_URL)
     print(f"✅ Webhook configurado en: {WEBHOOK_URL}")
-
-    # Inicia el servidor Flask
     port = int(os.environ.get("PORT", 5000))
-    print(f"🚀 Iniciando servidor en puerto {port}")
+    print(f"🚀 Iniciando servidor Flask en puerto {port}")
     app.run(host="0.0.0.0", port=port)
