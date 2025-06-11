@@ -69,6 +69,7 @@ Contraseña: admin o la que tengas configurada.
 def webhook():
     try:
         json_str = request.get_data().decode("utf-8")
+        print(f"🚨🚨🚨 Payload recibido:\n{json_str}")   # <-- vuelve a imprimir
         update = telebot.types.Update.de_json(json_str)
         bot.process_new_updates([update])  # Usa handlers definidos arriba
         return "OK", 200
