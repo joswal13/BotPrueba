@@ -11,6 +11,8 @@ if not TOKEN:
     exit(1)
 
 bot = telebot.TeleBot(TOKEN)
+print(f"📋 Handlers registrados: {bot.message_handlers}")
+
 app = Flask(__name__)
 
 # ============================
