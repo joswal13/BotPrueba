@@ -13,7 +13,7 @@ bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
 @bot.message_handler(commands=["start", "help"])
-def send_welcome(message):
+def send_start(message):
     print(f"✅ Recibido /start de {message.from_user.id}")
     bot.reply_to(message, 
                  """
@@ -33,7 +33,7 @@ Nos enfocados en brindarte el mejor servicio. ¿En que podemos ayudarte ?
     
 @bot.message_handler(commands=["1"])
 
-def send_welcome(message):
+def handle_support(message):
     
     bot.reply_to(
         message,
@@ -62,7 +62,7 @@ def send_welcome(message):
 
 @bot.message_handler(commands=["2"])
 
-def send_welcome(message):
+def handle_plans(message):
     
     bot.reply_to(
         message,
@@ -79,7 +79,7 @@ def send_welcome(message):
 
 @bot.message_handler(commands=["3"])
 
-def send_welcome(message):
+def handle_wifi(message):
     
     bot.reply_to(
         message,
@@ -116,16 +116,18 @@ def webhook():
         json_str = request.get_data().decode("utf-8")
         print(f"🚨🚨🚨 Payload recibido:\n{json_str}")
         update = telebot.types.Update.de_json(json_str)
+        bot.process_new_updates([update])
 
-        if update.message:
-            chat_id = update.message.chat.id
-            text = update.message.text
-            print(f"➡️ Mensaje recibido: {text} de {chat_id}")
 
-            if text and text.startswith("/start"):
-                bot.send_message(chat_id, "Hola, soy tu bot!")
-            elif text and text.startswith("/help"):
-                bot.send_message(chat_id, "Puedo ayudarte con /start y /help.")
+        # if update.message:
+        #     chat_id = update.message.chat.id
+        #     text = update.message.text
+        #     print(f"➡️ Mensaje recibido: {text} de {chat_id}")
+
+        #     if text and text.startswith("/start"):
+        #         bot.send_message(chat_id, "Hola, soy tu bot!")
+        #     elif text and text.startswith("/help"):
+        #         bot.send_message(chat_id, "Puedo ayudarte con /start y /help.")
 
         return "OK", 200
     except Exception as e:
