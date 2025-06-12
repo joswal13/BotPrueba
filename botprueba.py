@@ -39,11 +39,15 @@ def handle_support(message):
     bot.reply_to(message, """
 Soporte técnico / Problemas con el WiFi
 
-📱 Verifica si hay señal en otros dispositivos (Intenta conectarte desde otro celular, computadora o tablet.Si ningún dispositivo se conecta, probablemente el problema está en tu red, no en el dispositivo.) 
-⚠️ Revisa las luces del módem/router  (Luz "LOS" (en rojo o parpadeando): significa pérdida de señal de fibra. Es señal clara de que no hay internet. Luz "Internet" apagada o roja: no hay conexión a internet. Luz "Power" apagada: el módem está apagado o sin energía.)
-🔌 Reinicia el módem/router  (Apaga el equipo, espera 10-15 segundos y vuelve a encenderlo.Espera 2-3 minutos para que se reinicie completamente.)
-🧪 Prueba con un cable Ethernet  ( Conecta directamente tu PC al módem por cable. Si tampoco hay conexión, el problema no es del WiFi, sino del servicio en sí.)
-📞 Contacta a soporte técnico: 3213819255  ( Si después de todo sigue sin funcionar: Llama al soporte técnico (3213819255). Ten a mano; nombre y numero de cedula del titular y revisa los indicadores del módem antes de llamar (ellos lo pedirán).)
+                 📱 Verifica si hay señal en otros dispositivos (Intenta conectarte desde otro celular, computadora o tablet.Si ningún dispositivo se conecta, probablemente el problema está en tu red, no en el dispositivo.) 
+
+                 ⚠️ Revisa las luces del módem/router  (Luz "LOS" (en rojo o parpadeando): significa pérdida de señal de fibra. Es señal clara de que no hay internet. Luz "Internet" apagada o roja: no hay conexión a internet. Luz "Power" apagada: el módem está apagado o sin energía.)
+
+                 🔌 Reinicia el módem/router  (Apaga el equipo, espera 10-15 segundos y vuelve a encenderlo.Espera 2-3 minutos para que se reinicie completamente.)
+                
+                 🧪 Prueba con un cable Ethernet  ( Conecta directamente tu PC al módem por cable. Si tampoco hay conexión, el problema no es del WiFi, sino del servicio en sí.)
+                
+                 📞 Contacta a soporte técnico: 3213819255  ( Si después de todo sigue sin funcionar: Llama al soporte técnico (3213819255). Ten a mano; nombre y numero de cedula del titular y revisa los indicadores del módem antes de llamar (ellos lo pedirán).)
 """)
 
 @bot.message_handler(commands=["Planes"])
@@ -52,10 +56,13 @@ def handle_plans(message):
     bot.reply_to(message, """
 Planes de Servicio de Internet:
 
-1. ⚡ Plan Básico - 100 Mbps x $75.000  
-2. 🔥 Plan Intermedio - 150 Mbps x $85.000  
-3. 🤩 Plan Avanzado - 200 Mbps x $95.000
-4. 🤯​ Plan Premium - +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
+                 1. ⚡ Plan Básico  100 Mbps x $75.000  
+                
+                 2. 🔥 Plan Intermedio  150 Mbps x $85.000  
+
+                 3. 🤩 Plan Avanzado  200 Mbps x $95.000
+                 
+                 4. 🤯​ Plan Premium  +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
 """)
 
 @bot.message_handler(commands=["CambioClaveWifi"])
