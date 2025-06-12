@@ -56,13 +56,13 @@ def handle_plans(message):
     bot.reply_to(message, """
 Planes de Servicio de Internet:
 
-                 1. ⚡ Plan Básico  100 Mbps x $75.000  
+    1. ⚡ Plan Básico  100 Mbps x $75.000  
                 
-                 2. 🔥 Plan Intermedio  150 Mbps x $85.000  
+    2. 🔥 Plan Intermedio  150 Mbps x $85.000  
 
-                 3. 🤩 Plan Avanzado  200 Mbps x $95.000
-                 
-                 4. 🤯​ Plan Premium  +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
+    3. 🤩 Plan Avanzado  200 Mbps x $95.000
+
+    4. 🤯​ Plan Premium  +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
 """)
 
 @bot.message_handler(commands=["CambioClaveWifi"])
