@@ -28,14 +28,14 @@ MINET es tu proveedor de servicios de internet con tecnología en Fibra Óptica.
 Nos enfocados en brindarte el mejor servicio. ¿En qué podemos ayudarte?
 
     /start - 💬 Comenzar un nuevo chat
-    /1 - 👨‍🔧 Soporte técnico / Problemas con el WiFi
-    /2 - 💯 Planes de Servicio de Internet
-    /3 - 📲 Cambiar contraseña del WiFi
+    /SoporteTecnico - 👨‍🔧 Soporte técnico / Problemas con el WiFi
+    /Planes - 💯 Planes de Servicio de Internet
+    /CambioClaveWifi - 📲 Cambiar contraseña del WiFi
 """)
 
-@bot.message_handler(commands=["Soporte Tecnico"])
+@bot.message_handler(commands=["SoporteTecnico"])
 def handle_support(message):
-    #print(f"✅ Handler /Soporte Tecnico invocado desde chat {message.chat.id}")
+    #print(f"✅ Handler /SoporteTecnico invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Soporte técnico / Problemas con el WiFi
 
@@ -58,9 +58,9 @@ Planes de Servicio de Internet:
 4. 🤯​ Plan Premium - +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
 """)
 
-@bot.message_handler(commands=["Cambio Clave Wifi"])
+@bot.message_handler(commands=["CambioClaveWifi"])
 def handle_wifi_change(message):
-    #print(f"✅ Handler /Cambio Clave Wifi  invocado desde chat {message.chat.id}")
+    #print(f"✅ Handler /CambioClaveWifi  invocado desde chat {message.chat.id}")
     bot.reply_to(message, """
 Para cambiar la contraseña del WiFi, ingresa al panel de administración de tu router desde tu navegador con la dirección 192.168.1.1 o 192.168.0.1.  
 Usuario: admin  
