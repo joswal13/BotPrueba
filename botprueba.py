@@ -62,7 +62,8 @@ Planes de Servicio de Internet:
 
     3. 🤩 Plan Avanzado  200 Mbps x $95.000
 
-    4. 🤯​ Plan Premium  +200 Mbps Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
+    4. 🤯​ Plan Premium  +200 Mbps 
+          Para Solicitar mas megas comunicate con nuestras oficinas al 3213819255
 """)
 
 @bot.message_handler(commands=["CambioClaveWifi"])
