@@ -39,35 +39,19 @@ def handle_support(message):
     bot.reply_to(message, """
 Soporte técnico / Problemas con el WiFi
 
-     📱 Verifica si hay señal en otros dispositivos 
-        (Intenta conectarte desde otro celular, 
-        computadora o tablet.Si ningún dispositivo 
-        se conecta, probablemente el problema está 
-        en tu red, no en el dispositivo.) 
+📱 Verifica si hay señal en otros dispositivos (Intenta conectarte desde otro celular, computadora o tablet.Si ningún dispositivo se conecta, probablemente el problema está en tu red, no en el dispositivo.) 
 
-     ⚠️ Revisa las luces del módem/router :
-        *Luz "Power" apagada: el módem está apagado o sin energía.
-        Posible Falla con la fuente de poder)
+⚠️ Revisa las luces del módem/router: *Luz "Power" apagada: el módem está apagado o sin energía. Posible Falla con la fuente de poder)
         
-        * Luz "PON" o "LOS" en rojo o parpadeando: 
-        significa pérdida de señal de fibra. 
-        Es señal clara de que no hay internet. 
+* Luz "PON" o "LOS" en rojo o parpadeando: significa pérdida de señal de fibra. Es señal clara de que no hay internet. 
         
-        *Luz "WLA" o "Internet" o "wifi" apagada: 
-        no hay conexión a internet.       
+*Luz "WLA" o "Internet" o "wifi" apagada: no hay conexión a internet.       
         
-     🔌 Reinicia el módem/router  (Apaga el equipo, 
-        espera 10-15 segundos y vuelve a encenderlo.
-        Espera 2-3 minutos para que se reinicie completamente.)
+🔌 Reinicia el módem/router  (Apaga el equipo, espera 10-15 segundos y vuelve a encenderlo. Espera 2-3 minutos para que se reinicie completamente.)
                 
-     🧪 Prueba con un cable Ethernet  ( Conecta directamente tu PC 
-        al módem por cable. Si tampoco hay conexión, 
-        el problema no es del WiFi, sino del servicio en sí.)
+🧪 Prueba con un cable Ethernet  ( Conecta directamente tu PC al módem por cable. Si tampoco hay conexión, el problema no es del WiFi, sino del servicio en sí.)
                 
-     📞 Contacta a soporte técnico: 3213819255  ( Si después de
-        todo sigue sin funcionar: Llama al soporte técnico (3213819255).
-        Ten a mano; nombre y numero de cedula del titular y revisa los
-        indicadores del módem antes de llamar (ellos lo pedirán).)
+📞 Contacta a soporte técnico: 3213819255  ( Si después de todo sigue sin funcionar: Llama al soporte técnico (3213819255). Ten a mano; nombre y numero de cedula del titular y revisa los indicadores del módem antes de llamar (ellos lo pedirán).)
 """)
 
 @bot.message_handler(commands=["Planes"])
